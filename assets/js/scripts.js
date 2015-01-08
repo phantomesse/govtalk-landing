@@ -3,11 +3,23 @@ $(document).ready(function() {
   $(window).scroll(function() {
     sticky_nav();
   });
+
+  // Smooth scrolling
+  $('nav a').click(function() {
+    var hash = $(this).attr('href');
+    $('html, body').animate({
+      scrollTop: $(hash).offset().top
+    }, 500, function() {
+      location.hash = hash;
+    });
+    return false;
+  });
 });
 
 function sticky_nav() {
   var scroll_top = $(window).scrollTop();
   var nav_height = $('nav').height();
+  var home_link = $('a[href="#home"]');
 
   // Toggle stickiness
   if (scroll_top > $('body').height() - nav_height) {
@@ -16,14 +28,18 @@ function sticky_nav() {
     }
 
     // Show the home link
-    $('a[href="#home"]').show();
+    if (home_link.is(':hidden')) {
+      home_link.show();
+    }
   } else {
     if ($('nav').hasClass('sticky')) {
       $('nav').removeClass('sticky');
     }
 
     // Hide the home link
-    $('a[href="#home"]').hide();
+    if (home_link.is(':visible')) {
+      home_link.hide();
+    }
   }
 
   // Toggle color of the nav pointer triangle
@@ -46,19 +62,3 @@ function sticky_nav() {
     }
   });
 }
-
-// Smooth scrolling
-$(function() {
-  $('a[href*=#]:not([href=#])').click(function() {
-    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-      var target = $(this.hash);
-      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-      if (target.length) {
-        $('html,body').animate({
-          scrollTop: target.offset().top
-        }, 500);
-        return false;
-      }
-    }
-  });
-});

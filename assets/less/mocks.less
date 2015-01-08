@@ -1,0 +1,266 @@
+.mock-inner {
+  margin: 0px auto;
+  padding: 0px @mock-side-padding;
+  position: relative;
+  width: 80%;
+}
+
+.mock-header {
+  padding: 36px 0px 20px;
+  position: relative;
+  background: @blue;
+  color: @white;
+  font-family: 'Roboto Condensed', sans-serif;
+
+  h1 {
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 48px;
+  }
+
+  .fa-bars {
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: @mock-side-padding;
+    font-size: 24px;
+  }
+}
+
+.mock-toolbar {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+
+  form {
+    display: inline-block;
+    margin-right: 4px;
+
+    input {
+      padding-left: 28px;
+      width: 100px;
+    }
+  }
+}
+
+.mock-hero {
+  padding: 48px 0px 0px;
+  position: relative;
+  background-image: url('../images/mock-hero.jpg');
+  background-size: cover;
+  background-position: center top;
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+
+  .mock-hero-shadow-top,
+  .mock-hero-shadow-bottom {
+    position: absolute;
+    left: 0px;
+    box-shadow: 0px 0px 50px darken(@blue, 40%);
+    width: 100%;
+    height: 10px;
+  }
+
+  .mock-hero-shadow-top {
+    top: -10px;
+  }
+
+  .mock-hero-shadow-bottom {
+    bottom: -10px;
+  }
+
+  p {
+    color: darken(@blue, 20%);
+    font: 300 20px 'Roboto Condensed', sans-serif;
+    text-shadow: 1px 1px 1px fade(@white, 30%);
+  }
+
+  input {
+    padding-left: 24px;
+    width: 250px;
+  }
+}
+
+#find-representatives-results {
+  margin-top: 20px;
+
+  .politician {
+    display: inline-block;
+    margin-right: 16px;
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+
+    .politician-image {
+      margin: 0px auto;
+      background-image: url('../images/person.jpg');
+      background-size: cover;
+      border-radius: 100%;
+      width: 48px;
+      height: 48px;
+    }
+
+    .politician-name {
+      padding: 4px 0px;
+      color: darken(@blue, 30%);
+      font: 400 12px 'Roboto', sans-serif;
+      line-height: 12px;
+    }
+
+    .politician-location {
+      font: 300 10px 'Roboto', sans-serif;
+      line-height: 10px;
+    }
+
+    &:hover {
+      .politician-image {
+        box-shadow: 0px 0px 10px fade(@black, 20%);
+      }
+    }
+  }
+}
+
+#mock-homepage {
+  padding: 20px 0px;
+  .mock-inner {
+    display: flex;
+  }
+}
+
+#mock-trending-questions {
+  width: 70%;
+}
+
+#mock-leaderboard {
+  padding-left: 20px;
+  width: 30%;
+}
+
+.question {
+  padding: 16px;
+  position: relative;
+  background: darken(@white, 2%);
+  border-radius: 4px;
+  border: 1px darken(@white, 10%) solid;
+
+  h3 {
+    margin-bottom: 8px;
+  }
+
+  time {
+    float: right;
+    color: lighten(@black, 40%);
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .question-voting {
+    float: left;
+    padding-right: 8px;
+    text-align: center;
+
+    .question-voting-up,
+    .question-voting-down {
+      margin: 0px auto;
+      border: 10px transparent solid;
+      width: 0px;
+      height: 0px;
+      cursor: pointer;
+    }
+
+    .question-voting-up {
+      border-top-width: 0px;
+      border-bottom-color: darken(@white, 10%);
+
+      &:hover {
+        border-bottom-color: fade(@blue, 50%);;
+      }
+
+      &.active {
+        border-bottom-color: @blue;
+      }
+    }
+
+    .question-voting-down {
+      border-bottom-width: 0px;
+      border-top-color: darken(@white, 10%);
+
+      &:hover {
+        border-top-color: fade(@blue, 50%);
+      }
+
+      &.active {
+        border-top-color: @blue;
+      }
+    }
+
+    .question-voting-score {
+      padding: 4px 0px;
+      font-size: 12px;
+    }
+  }
+
+  .question-avatars {
+    float: left;
+    position: relative;
+    width: 64px;
+    height: 64px;
+
+    .question-politician-avatar {
+      position: relative;
+      background-image: url('../images/person.jpg');
+      background-size: cover;
+      border-radius: 4px;
+      width: 48px;
+      height: 48px;
+    }
+
+    .question-user-avatar {
+      position: absolute;
+      bottom: 0px;
+      right: 0px;
+      background-image: url('../images/person.jpg');
+      background-size: cover;
+      border-radius: 100%;
+      width: 36px;
+      height: 36px;
+    }
+  }
+
+  .question-content {
+    padding-left: 16px;
+    min-height: 64px;
+  }
+
+  .question-button {
+    padding-left: 16px;
+    position: absolute;
+    bottom: -1px;
+    right: -1px;
+    border-radius: 24px 0px 4px 0px;
+  }
+}
+
+.leaderboard-politician {
+  padding: 4px 0px;
+
+  .politician-image {
+    display: inline-block;
+    background-image: url('../images/person.jpg');
+    background-size: cover;
+    border-radius: 100%;
+    width: 48px;
+    height: 48px;
+    vertical-align: middle;
+  }
+
+  .politician-name {
+    display: inline-block;
+    padding-left: 8px;
+    font-size: 14px;
+    line-height: 48px;
+    height: 48px;
+    vertical-align: middle;
+  }
+}
