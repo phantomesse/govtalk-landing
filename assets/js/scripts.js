@@ -137,7 +137,7 @@ function handle_find_representatives(user_data) {
 
 function fill_leaderboard(user_data) {
   var chosen_indices = [];
-  for (var i = 0; i < 4; i++) {
+  for (var i = 0; i < 3; i++) {
     var random_index = Math.floor(Math.random() * user_data.length);
     while ($.inArray(random_index, chosen_indices) > -1) {
       random_index = Math.floor(Math.random() * user_data.length);
@@ -148,7 +148,7 @@ function fill_leaderboard(user_data) {
   }
 
   chosen_indices = [];
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < 3; i++) {
     var random_index = Math.floor(Math.random() * user_data.length);
     while ($.inArray(random_index, chosen_indices) > -1) {
       random_index = Math.floor(Math.random() * user_data.length);
@@ -201,8 +201,7 @@ function add_trending_questions(user_data) {
 
   function add_trending_question(question, politician, user, use_on_question_page) {
     var question_div = $('<div>')
-      .addClass('question')
-      .appendTo('#mock-trending-questions');
+      .addClass('question');
 
     // Pick a random time before now
     var question_time = moment()
@@ -210,7 +209,7 @@ function add_trending_questions(user_data) {
       .subtract(Math.floor(Math.random() * 24), 'hours')
       .subtract(Math.floor(Math.random() * 60), 'minutes');
     $('<time>')
-      .text(question_time.format("MMM d, YYYY @ h:mma"))
+      .text(question_time.format("MMM D, YYYY @ h:mma"))
       .appendTo(question_div);
 
     // Add the politician name and the user name
@@ -287,15 +286,112 @@ function add_trending_questions(user_data) {
       .html('<p>' + question.question + '</p>')
       .appendTo(question_div);
 
-    // Add view question button
-    $('<button>')
-      .addClass('question-button')
-      .text('View Question')
-      .appendTo(question_div);
-
     // Add this question to the question page
     if (use_on_question_page) {
-      // TODO
+      // Add flag question button
+      $('<button>')
+        .addClass('question-button question-flag')
+        .text('Flag / Report')
+        .appendTo(question_div)
+        .on('click', function() {
+          $(this).text('Thank you! A moderator will review this question as soon as possible.');
+        });
+
+      // Add question to question page
+      question_div.prependTo('#mock-question-page .mock-inner');
+
+      // Create the answer div
+      var answer_div = $('<div>')
+        .addClass('answer')
+        .insertAfter(question_div);
+
+      // Set a time for the answer
+      var answer_time = question_time
+        .add(Math.floor(Math.random() * 24), 'hours')
+        .add(Math.floor(Math.random() * 60), 'minutes');
+      $('<time>')
+        .text(question_time.format("MMM D, YYYY @ h:mma"))
+        .appendTo(answer_div);
+
+      // Add the politician's name and avatar
+      $('<h3>')
+        .html('<b>' + politician.name + '</b> answered:')
+        .appendTo(answer_div);
+      $('<div>')
+        .addClass('answer-avatar')
+        .css('background-image', 'url(\'assets/images/avatars/' + politician.avatar + '\')')
+        .appendTo(answer_div);
+
+      // Add the answer content
+      $('<div>')
+        .addClass('answer-content')
+        .html('<p>' + question.answer + '</p>')
+        .appendTo(answer_div);
+
+      // Let the comments commence!
+      var last_comment_time = answer_time;
+      for (var i = 0; i < question.comments.length; i++) {
+        var comment_content = question.comments[i];
+        var comment_time = last_comment_time
+          .add(Math.floor(Math.random() * 120), 'minutes');
+        var comment_user = user_data[Math.floor(Math.random() * user_data.length)];
+        add_comment(comment_content, comment_user, comment_time);
+      }
+
+      function add_comment(comment_content, comment_user, comment_time) {
+        var comment_div = $('<div>')
+          .addClass('comment')
+          .insertBefore('#comment-form');
+
+        console.log(comment_time);
+        $('<time>')
+          .text(comment_time.format("MMM D, YYYY @ h:mma"))
+          .appendTo(comment_div);
+
+        $('<h3>')
+          .html('<b>' + comment_user.name + '</b> commented:')
+          .appendTo(comment_div);
+
+        $('<div>')
+          .addClass('comment-avatar')
+          .css('background-image', 'url(\'assets/images/avatars/' + comment_user.avatar + '\')')
+          .appendTo(comment_div);
+
+        $('<div>')
+          .addClass('comment-content')
+          .html('<p>' + comment_content + '</p>')
+          .appendTo(comment_div);
+      }
+
+      // Set the asking user as the user of the questions page
+      $('.user-avatar').css('background-image', 'url(\'assets/images/avatars/' + user.avatar + '\')')
+
+      // Handle making a comment
+      $('#comment-button').hide();
+      $('#comment-textarea').on('keyup', function() {
+        if ($(this).val().length > 0) {
+          if ($('#comment-button').is(':hidden')) {
+            $('#comment-button').fadeIn();
+          }
+        } else {
+          $('#comment-button').hide();
+        }
+      });
+      $('#comment-form').on('submit', function(e) {
+        e.preventDefault();
+        var now = moment();
+        add_comment($('#comment-textarea').val(), user, now);
+        $('#comment-textarea').val('');
+      });
+    } else {
+      // Add view question button
+      $('<button>')
+        .addClass('question-button')
+        .text('View Question')
+        .appendTo(question_div);
+
+      // Add question to trending questions
+      question_div.appendTo('#mock-trending-questions');
     }
   }
 }
