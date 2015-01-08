@@ -1,3 +1,73 @@
+/* MOCK STUFF */
+.mock {
+  position: relative;
+  background: @white;
+  font-size: 14px;
+  box-shadow: 0px 0px 10px fade(@blue, 20%);
+  width: 100%;
+
+  form {
+    position: relative;
+
+    .fa {
+      position: absolute;
+      top: 6px;
+      left: 8px;
+      color: @white;
+    }
+  }
+
+  input, button {
+    padding: 4px 8px;
+    background: fade(darken(@blue, 10%), 50%);
+    color: @white;
+    font: 300 12px 'Roboto', sans-serif;
+    border: 1px fade(darken(@blue, 20%), 30%) solid;
+    outline: none;
+  }
+
+  ::-webkit-input-placeholder {
+    color: @light-blue;
+  }
+
+  :-moz-placeholder {
+    color: @light-blue;
+  }
+
+  ::-moz-placeholder {
+    color: @light-blue;
+  }
+
+  :-ms-input-placeholder {
+    color: @light-blue;
+  }
+
+  button {
+    background: lighten(@blue, 5%);
+    cursor: pointer;
+
+    .fa {
+      display: inline-block;
+      padding-right: 2px;
+      font-size: 14px;
+    }
+
+    &:hover {
+      background: darken(@blue, 5%);
+    }
+  }
+
+  h2 {
+    font: 300 24px 'Roboto Condensed', sans-serif;
+    line-height: 24px;
+  }
+
+  h3 {
+    font: 300 18px 'Roboto Condensed', sans-serif;
+    line-height: 18px;
+  }
+}
+
 .mock-inner {
   margin: 0px auto;
   padding: 0px @mock-side-padding;
@@ -16,6 +86,10 @@
     font-weight: 400;
     font-size: 48px;
     line-height: 48px;
+  }
+
+  h2 {
+    color: @white;
   }
 
   .fa-bars {
@@ -123,6 +197,7 @@
 
 #mock-homepage {
   padding: 20px 0px;
+
   .mock-inner {
     display: flex;
   }
@@ -137,7 +212,12 @@
   width: 30%;
 }
 
+#mock-question-page {
+  padding: 20px 0px;
+}
+
 .question {
+  margin-bottom: 20px;
   padding: 16px;
   position: relative;
   background: darken(@white, 2%);
@@ -146,6 +226,10 @@
 
   h3 {
     margin-bottom: 8px;
+
+    b {
+      font-weight: 400;
+    }
   }
 
   time {
@@ -239,7 +323,61 @@
     bottom: -1px;
     right: -1px;
     border-radius: 24px 0px 4px 0px;
+
+    &.question-flag {
+      background: lighten(@red, 2%);
+      border-color: darken(@red, 10%);
+
+      &:hover {
+        background: darken(@red, 5%);
+      }
+    }
   }
+}
+
+.comment,
+.answer {
+  margin-bottom: 20px;
+  padding: 16px;
+  position: relative;
+  background: darken(@white, 2%);
+  border-radius: 4px;
+  border: 1px darken(@white, 10%) solid;
+
+  h3 {
+    margin-bottom: 8px;
+
+    b {
+      font-weight: 400;
+    }
+  }
+
+  time {
+    float: right;
+    color: lighten(@black, 40%);
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .comment-avatar,
+  .answer-avatar {
+    float: left;
+    margin-right: 16px;
+    background-image: url('../images/person.jpg');
+    background-size: cover;
+    border-radius: 4px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .comment-content,
+  .answer-content {
+    min-height: 48px;
+  }
+}
+
+.comment {
+  background: lighten(@light-blue, 10%);
 }
 
 .leaderboard-politician {
@@ -262,5 +400,40 @@
     line-height: 48px;
     height: 48px;
     vertical-align: middle;
+  }
+}
+
+#comment-form {
+  padding-bottom: 20px;
+  text-align: right;
+
+  h3 {
+    padding-bottom: 8px;
+    text-align: left;
+  }
+
+  .avatar {
+    float: left;
+    margin-right: 16px;
+    background-image: url('../images/person.jpg');
+    background-size: cover;
+    border-radius: 4px;
+    width: 64px;
+    height: 64px;
+  }
+
+  #comment-textarea {
+    padding: 8px;
+    font: 300 14px 'Roboto', sans-serif;
+    text-align: left;
+    border: 1px darken(@white, 10%) solid;
+    border-radius: 4px;
+    outline: none;
+    width: ~"calc(100% - 80px)";
+    height: 64px;
+  }
+
+  #comment-button {
+    margin-top: 8px;
   }
 }
