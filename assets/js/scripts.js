@@ -72,8 +72,9 @@ function sticky_nav() {
 
 function load_users() {
   $.get('data/users.json', function(data) {
-    console.log(data);
-    data = JSON.parse(data);
+    if (typeof data !== 'object') {
+      data = JSON.parse(data);
+    }
 
     // Handle find representatives query
     handle_find_representatives(data);
@@ -176,8 +177,9 @@ function fill_leaderboard(user_data) {
 
 function add_trending_questions(user_data) {
   $.get('data/questions.json', function(question_data) {
-    console.log(question_data);
-    question_data = JSON.parse(question_data);
+    if (typeof question_data !== 'object') {
+      question_data = JSON.parse(question_data);
+    }
 
     var chosen_indices = [];
     var use_on_question_page_index = Math.floor(Math.random() * question_data.length);
