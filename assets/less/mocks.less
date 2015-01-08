@@ -115,6 +115,18 @@
       width: 100px;
     }
   }
+
+  .avatar {
+    margin-right: 4px;
+    display: inline-block;
+    background-image: url('../images/person.jpg');
+    background-size: cover;
+    border-radius: 4px;
+    border: 1px darken(@blue, 10%) solid;
+    width: 26px;
+    height: 26px;
+    vertical-align: middle;
+  }
 }
 
 .mock-hero {
@@ -204,16 +216,16 @@
 }
 
 #mock-trending-questions {
-  width: 70%;
+  width: ~"calc(100% - 240px)";
 }
 
 #mock-leaderboard {
-  padding-left: 20px;
-  width: 30%;
+  padding-left: 36px;
+  width: 240px;
 }
 
 #mock-question-page {
-  padding: 20px 0px;
+  padding: 36px 0px 20px;
 }
 
 .question {
@@ -287,6 +299,7 @@
 
   .question-avatars {
     float: left;
+    margin-right: 8px;
     position: relative;
     width: 64px;
     height: 64px;
@@ -313,7 +326,7 @@
   }
 
   .question-content {
-    padding-left: 16px;
+    margin-bottom: 20px;
     min-height: 64px;
   }
 
@@ -404,7 +417,7 @@
 }
 
 #comment-form {
-  padding-bottom: 20px;
+  padding-bottom: 16px;
   text-align: right;
 
   h3 {
