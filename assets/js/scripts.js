@@ -174,8 +174,8 @@ function fill_leaderboard(user_data) {
 }
 
 function add_trending_questions(user_data) {
-  $.get('/data/questions.json', function(question_data) {
-    question_data = $.parseJSON(question_data);
+  $.get('data/questions.json', function(question_data) {
+    question_data = JSON.parse(question_data);
 
     var chosen_indices = [];
     var use_on_question_page_index = Math.floor(Math.random() * question_data.length);
