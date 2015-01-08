@@ -71,7 +71,7 @@ function sticky_nav() {
 }
 
 function load_users() {
-  $.get('/data/users.json', function(data) {
+  $.get('data/users.json', function(data) {
     data = $.parseJSON(data);
 
     // Handle find representatives query
