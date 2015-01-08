@@ -72,6 +72,7 @@ function sticky_nav() {
 
 function load_users() {
   $.get('data/users.json', function(data) {
+    console.log(data);
     data = JSON.parse(data);
 
     // Handle find representatives query
@@ -175,6 +176,7 @@ function fill_leaderboard(user_data) {
 
 function add_trending_questions(user_data) {
   $.get('data/questions.json', function(question_data) {
+    console.log(question_data);
     question_data = JSON.parse(question_data);
 
     var chosen_indices = [];
