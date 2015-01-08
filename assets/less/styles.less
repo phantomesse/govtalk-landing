@@ -159,4 +159,29 @@ section {
   }
 }
 
+.team-member {
+  clear: both;
+  padding-bottom: 36px;
+
+  .team-avatar {
+    float: left;
+    margin-right: 16px;
+    background-size: 100%;
+    background-position: center;
+    border-radius: 100%;
+    width: 120px;
+    height: 120px;
+    transition: background-size 0.1s linear 0s;
+
+    &:hover {
+      background-size: 110%;
+    }
+  }
+
+  h3 {
+    color: fade(darken(@blue, 10%), 80%);
+    font: 400 24px 'Roboto Condensed', sans-serif;
+  }
+}
+
 @import 'mocks';

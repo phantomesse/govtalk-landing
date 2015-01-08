@@ -343,7 +343,6 @@ function add_trending_questions(user_data) {
           .addClass('comment')
           .insertBefore('#comment-form');
 
-        console.log(comment_time);
         $('<time>')
           .text(comment_time.format("MMM D, YYYY @ h:mma"))
           .appendTo(comment_div);
